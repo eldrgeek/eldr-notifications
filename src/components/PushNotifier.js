@@ -34,6 +34,17 @@ const requestNotification = () => {
   });
 };
 
+let interval = null;
+
+let toggleNotification = () => {
+  if (interval) {
+    clearInterval(interval);
+    interval = null;
+  } else {
+    interval = setInterval(sendNotification, 20000);
+  }
+};
+
 const sendNotification = () => {
   console.log("Trying to send ", Notification.permission);
   if (Notification.permission === "granted") {
@@ -64,7 +75,7 @@ export default () => {
         label="Req Notification"
         id="requestit"
       />
-      <AutoButton onClick={sendNotification} label="Send it" id="sendit" />
+      <AutoButton onClick={toggleNotification} label="Send it" id="sendit" />
     </React.Fragment>
   );
 };

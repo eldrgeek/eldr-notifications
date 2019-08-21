@@ -41,7 +41,7 @@ class App extends Component {
             className="App-logo"
             alt="Cloudinary Logo"
           />
-          <h1 className="App-title">Revolution 1x1</h1>
+          <h1 className="App-title">Revolution 1x1 App</h1>
         </header>
         <ClCamera offline={this.state.offline} />
       </div>

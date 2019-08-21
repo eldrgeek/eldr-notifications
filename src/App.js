@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.png";
+import logo from "./rev1x1.jpg";
 import "./App.css";
 import ClCamera from "./components/ClCamera";
 import Notifier from "./components/Notifier";
@@ -33,9 +33,15 @@ class App extends Component {
       <div className="App">
         <Notifier offline={this.state.offline} />
         <PushNotifier />
+
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="Cloudinary Logo" />
-          <h1 className="App-title">CloudyCam</h1>
+          <img
+            style={{ paddingTop: "15px" }}
+            src={logo}
+            className="App-logo"
+            alt="Cloudinary Logo"
+          />
+          <h1 className="App-title">Revolution 1x1</h1>
         </header>
         <ClCamera offline={this.state.offline} />
       </div>

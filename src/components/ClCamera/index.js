@@ -8,19 +8,28 @@ class ClCamera extends Component {
     super();
     this.webcam = null;
     this.interval = null;
+    this.start = this.start.bind(this);
+    this.takePicture = this.takePicture.bind(this);
     this.state = {
       capturedImage: null,
       captured: false,
       uploading: false
     };
   }
+
   takePicture() {
     imageCount++;
     this.captureImage();
   }
 
   start() {
+    console.log("This take pic");
     this.interval = setInterval(this.takePicture, 2000);
+    console.log("This look pic");
+  }
+  ttop() {
+    clearInterval(this.interval);
+    this.interval = null;
   }
 
   stop() {
@@ -78,7 +87,7 @@ class ClCamera extends Component {
           {" "}
           Take Picture{" "}
         </button>
-        <button className="captureButton" onClick={this.captureImage}>
+        <button className="captureButton" onClick={this.start}>
           {" "}
           Every 2 seconds{" "}
         </button>

@@ -7,13 +7,26 @@ class ClCamera extends Component {
   constructor() {
     super();
     this.webcam = null;
+    this.interval = null;
     this.state = {
       capturedImage: null,
       captured: false,
       uploading: false
     };
   }
+  takePicture() {
+    imageCount++;
+    this.captureImage();
+  }
 
+  start() {
+    this.interval = setInterval(this.takePicture, 2000);
+  }
+
+  stop() {
+    setInterval(this.takePicture, 2000);
+    this.interval = null;
+  }
   componentDidMount() {
     // initialize the camera
     const takePicture = () => {
@@ -21,7 +34,7 @@ class ClCamera extends Component {
       this.captureImage();
     };
 
-    setInterval(takePicture, 2000);
+    // setInterval(takePicture, 2000);
     this.canvasElement = document.createElement("canvas");
     this.webcam = new Webcam(
       document.getElementById("webcam"),
@@ -60,10 +73,16 @@ class ClCamera extends Component {
         </button>
       </div>
     ) : (
-      <button className="captureButton" onClick={this.captureImage}>
-        {" "}
-        Take Picture{" "}
-      </button>
+      <div>
+        <button className="captureButton" onClick={this.captureImage}>
+          {" "}
+          Take Picture{" "}
+        </button>
+        <button className="captureButton" onClick={this.captureImage}>
+          {" "}
+          Every 2 seconds{" "}
+        </button>
+      </div>
     );
 
     const uploading = this.state.uploading ? (
@@ -87,7 +106,11 @@ class ClCamera extends Component {
         />
         <br />
         <div> Image count is {imageCount} </div>
-        <div className="imageCanvas">{imageDisplay}</div>
+        {this.state.captured ? (
+          <div className="imageCanvas">{imageDisplay}</div>
+        ) : (
+          ""
+        )}
         {buttons}
       </div>
     );

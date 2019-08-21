@@ -37,7 +37,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="Cloudinary Logo" />
           <h1 className="App-title">CloudyCam</h1>
         </header>
-        {/* <ClCamera offline={this.state.offline} /> */}
+        <ClCamera offline={this.state.offline} />
       </div>
     );
   }
